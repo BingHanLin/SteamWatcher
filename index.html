@@ -16,7 +16,7 @@
       <h1>Hello Steam</h1>
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button @click="test" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
          按鈕
       </button>
 
@@ -29,11 +29,11 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
-                  <img :src="test" alt="">
+                  <img :src="img" alt="">
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                  <button type="button" class="btn btn-primary">確定</button>
+                  <button @click="test" type="button" class="btn btn-primary">確定</button>
                </div>
             </div>
          </div>
@@ -52,12 +52,23 @@
       const app = Vue.createApp({
          data() {
             return {
-               test: 'https://img95.699pic.com/photo/50111/4572.jpg_wh300.jpg'
+               img: "",
+               imgA: 'https://img95.699pic.com/photo/50111/4572.jpg_wh300.jpg',
+               imgB: 'http://vcdnb.huoying666.com/images/20180927/4746b6e8727a8489f619b98615ff463e/4746b6e872.jpg_home-image-640',
+               imgC: 'https://cdn.discordapp.com/attachments/455363870375280641/884104237443866634/unknown.png',
+
+
             }
          },
          methods: {
             test() {
-               alert('你好')
+               switch (this.img) {
+                  default: return this.img = this.imgA;
+                  case "https://img95.699pic.com/photo/50111/4572.jpg_wh300.jpg": return this.img = this.imgB;
+                  case "http://vcdnb.huoying666.com/images/20180927/4746b6e8727a8489f619b98615ff463e/4746b6e872.jpg_home-image-640": return this.img = this.imgC;
+                  case "https://cdn.discordapp.com/attachments/455363870375280641/884104237443866634/unknown.png": return this.img = this.imgA;
+               }
+
             }
          },
       });
